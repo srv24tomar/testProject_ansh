@@ -1,0 +1,47 @@
+<ion-view view-title="Add User">
+  <ion-content class="padding">
+
+<div class="row">
+    <input class="span4 pull-right" type="text" placeholder="Search for smartphone in model and brand" ng-model="query">
+</div>
+    <table id="results" class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>City</th>
+            <th>Address 1</th>
+            <th>Address 2</th>
+            <th>Postal Code</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="data in $root.tableData.data  ">
+            <td id="id">{{data.id}}</td>
+            <td id="name">{{data.name}}</td>
+            <td id="phone">{{data.phone}}</td>
+            <td id="city">{{data.address.city}}</td>
+            <td id="a1">{{data.address.address_line1}}</td>
+            <td id="a2">{{data.address.address_line2}}</td>
+            <td id="pc">{{data.address.postal_code}}</td>
+            <td><button id="{{data.id}}" ng-click="showHideForm(clicked,'edit', data)">Edit</button></td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <button ng-click="showHideForm(clicked, 'add', null)">Add Data</button>
+    <div ng-if="clicked == 1 ?true : false">
+      <input ng-model="add.id" placeholder="id"></input>
+      <input ng-model="add.name" placeholder="name"></input>
+      <input ng-model="add.phone" placeholder="phone"></input>
+      <input ng-model="add.address.city" placeholder="city"></input>
+      <input ng-model="add.address.address_line1" placeholder="address 1"></input>
+      <input ng-model="add.address.address_line2" placeholder="address 2"></input>
+      <input ng-model="add.address.postal_code" placeholder="postal code"></input>
+      <button ng-if="buttonToShow == 'add'" ng-click="addRow()">Submit</button>
+      <button ng-if="buttonToShow == 'edit'" ng-click="updateRow(add)">Update</button>
+    </div>
+  </ion-content>
+</ion-view>
